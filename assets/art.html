@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond Code · Bahareh Einollahi</title>
+  <meta name="description" content="The Digital Paintings and Animations I have Created.">
+  <link rel="icon" href="icons/favicon.ico">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #555555;
+      --border: #e5e5e5;
+      --accent: #0f4c81;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 { font-size: 1.85rem; font-weight: 700; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .art-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .art-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+    .art-cover {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      background: #fafafa;
+    }
+    .art-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .badge {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 0.6rem;
+      background: rgba(26, 26, 26, 0.78);
+      color: #ffffff;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+    }
+    .art-body {
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .art-title {
+      font-weight: 600;
+      font-size: 1.08rem;
+      margin-bottom: 0.4rem;
+    }
+    .art-card:hover .art-title {
+      color: var(--accent);
+    }
+    .art-desc {
+      font-size: 0.93rem;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+      flex-grow: 1;
+    }
+    .art-credit {
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Lightbox Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 1000;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+    }
+    .modal.open {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .modal-header {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+    }
+    .modal-close {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #ffffff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .modal-close:hover {
+      background: rgba(255,255,255,0.15);
+    }
+    .modal-content {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      background: #111;
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 0.75rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>Beyond Code</h1>
+      <p class="subtitle">Artworks that Rayhaneh and I have worked on so far.</p>
+    </div>
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+  </header>
+
+  <main class="gallery-grid">
+
+    <article class="art-card" data-title="'Artist Life' Digital Paintings" data-images="arts/artist_life/artist.final.page_01.jpg,arts/artist_life/artist.final.page_02.jpg,arts/artist_life/artist.final.page_03.jpg,arts/artist_life/artist.final.page_04.jpg,arts/artist_life/artist.final.page_05.jpg,arts/artist_life/artist.final.page_06.jpg,arts/artist_life/artist.final.page_07.jpg,arts/artist_life/artist.final.page_08.jpg,arts/artist_life/artist.final.page_09.jpg,arts/artist_life/artist.final.page_10.jpg">
+      <div class="art-cover">
+        <img loading="lazy" src="arts/artist_life/artist.final.page_02.jpg" alt="Artist Life Digital Paintings">
+        <span class="badge">10 pages</span>
+      </div>
+      <div class="art-body">
+        <h2 class="art-title">'Artist Life' Digital Paintings</h2>
+        <p class="art-desc">Once, when I had more time, I loved creating small gifts for the birthdays of those most precious to me.</p>
+        <div class="art-credit">By: Rayhaneh Einollahi and Bahareh Einollahi</div>
+      </div>
+    </article>
+
+    <article class="art-card" data-title="'Cloudy Dream' Short Animation 2021" data-images="arts/cloudy_dream/Cloudy-Dream.jpg,arts/cloudy_dream/cloudy_dream_laurels.jpg,arts/cloudy_dream/01_low.gif,arts/cloudy_dream/02_low.gif,arts/cloudy_dream/03_low.gif,arts/cloudy_dream/04_low.gif,arts/cloudy_dream/06_low.gif,arts/cloudy_dream/07_low.gif,arts/cloudy_dream/08_low.gif,arts/cloudy_dream/09_low.gif,arts/cloudy_dream/10_low.gif,arts/cloudy_dream/11_low.gif,arts/cloudy_dream/12_low.gif,arts/cloudy_dream/13_low.gif">
+      <div class="art-cover">
+        <img loading="lazy" src="arts/cloudy_dream/Cloudy-Dream.jpg" alt="Cloudy Dream Short Animation 2021">
+        <span class="badge">Poster &amp; Clips</span>
+      </div>
+      <div class="art-body">
+        <h2 class="art-title">'Cloudy Dream' Short Animation 2021</h2>
+        <p class="art-desc">Cloudy Dream is an environmental film that points out the serious problem of water scarcity.</p>
+        <div class="art-credit">Directors: Rayhaneh Einollahi and Bahareh Einollahi</div>
+      </div>
+    </article>
+
+    <article class="art-card" data-title="'Farewell' Digital Painting" data-images="arts/farewell/Farewell.jpg">
+      <div class="art-cover">
+        <img loading="lazy" src="arts/farewell/Farewell.jpg" alt="Farewell Digital Painting">
+      </div>
+      <div class="art-body">
+        <h2 class="art-title">'Farewell' Digital Painting</h2>
+        <p class="art-desc">Sometimes, when life feels heavy, kind souls do their best to lift us up—but even with their help, the struggle remains.</p>
+        <div class="art-credit">By: Rayhaneh Einollahi and Bahareh Einollahi</div>
+      </div>
+    </article>
+
+    <article class="art-card" data-title="'Green and Blue' Short Animation 2018" data-images="arts/green-and-blue/poster.jpg,arts/green-and-blue/greenandblue_laurels.jpg">
+      <div class="art-cover">
+        <img loading="lazy" src="arts/green-and-blue/poster.jpg" alt="Green and Blue Short Animation 2018">
+        <span class="badge">Poster &amp; Laurels</span>
+      </div>
+      <div class="art-body">
+        <h2 class="art-title">'Green and Blue' Short Animation 2018</h2>
+        <p class="art-desc">Our first animation, ‘Green and Blue’ (2018), is a 3D environmental short about air pollution.</p>
+        <div class="art-credit">Directed By: Rayhaneh Einollahi and Bahareh Einollahi</div>
+      </div>
+    </article>
+
+    <article class="art-card" data-title="'Melina' Digital Painting" data-images="arts/melina/Melina.jpg">
+      <div class="art-cover">
+        <img loading="lazy" src="arts/melina/Melina.jpg" alt="Melina Digital Painting">
+      </div>
+      <div class="art-body">
+        <h2 class="art-title">'Melina' Digital Painting</h2>
+        <p class="art-desc">Same here, I love Attack on Titan!</p>
+        <div class="art-credit">By: Rayhaneh Einollahi and Bahareh Einollahi</div>
+      </div>
+    </article>
+
+    <article class="art-card" data-title="'Metropole' Digital Painting" data-images="arts/metropole/metro.jpg">
+      <div class="art-cover">
+        <img loading="lazy" src="arts/metropole/metro.jpg" alt="Metropole Digital Painting">
+      </div>
+      <div class="art-body">
+        <h2 class="art-title">'Metropole' Digital Painting</h2>
+        <p class="art-desc">Tragedies like this happen all too often. A building collapsed, and many firefighters lost their lives while protecting others. I couldn’t stop thinking about their bravery and sacrifice.</p>
+        <div class="art-credit">By: Rayhaneh Einollahi and Bahareh Einollahi</div>
+      </div>
+    </article>
+
+    <article class="art-card" data-title="Architectural 3D Modeling" data-images="arts/architecture-3d-modeling/1.jpg,arts/architecture-3d-modeling/2.jpg,arts/architecture-3d-modeling/3.jpg,arts/architecture-3d-modeling/4.jpg,arts/architecture-3d-modeling/5.jpg">
+      <div class="art-cover">
+        <img loading="lazy" src="arts/architecture-3d-modeling/3.jpg" alt="Architectural 3D Modeling">
+        <span class="badge">5 renders</span>
+      </div>
+      <div class="art-body">
+        <h2 class="art-title">Architectural 3D Modeling</h2>
+        <p class="art-desc">These 3D models were created from given architectural plans, trying to achieve the structure and form the architect had in mind.</p>
+        <div class="art-credit">By: Rayhaneh Einollahi and Bahareh Einollahi</div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    © 2026 Bahareh Einollahi
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div class="modal" id="lightbox" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <strong id="modal-title"></strong>
+      <button class="modal-close" id="modal-close">Close ✕</button>
+    </div>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('lightbox');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const closeBtn = document.getElementById('modal-close');
+
+    document.querySelectorAll('.art-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modalTitle.textContent = card.dataset.title;
+        modalContent.innerHTML = '';
+        const images = card.dataset.images.split(',');
+        images.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src.trim();
+          img.loading = 'lazy';
+          img.alt = card.dataset.title;
+          modalContent.appendChild(img);
+        });
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
